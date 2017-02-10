@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BolaoQuina>
+  <Jogador>
+    <Id>1</Id>
+    <Nome>Edmilson</Nome>
+    <MesReferencia>Dezembro</MesReferencia>
+    <StatusPG>SIM</StatusPG>
+  </Jogador>
+  <Jogador>
+    <Id>2</Id>
+    <Nome>Osmar</Nome>
+    <MesReferencia>Dezembro</MesReferencia>
+    <StatusPG>SIM</StatusPG>
+  </Jogador>
+  <Jogador>
+    <Id>3</Id>
+    <Nome>Guaty</Nome>
+    <MesReferencia>Dezembro</MesReferencia>
+    <StatusPG>SIM</StatusPG>
+  </Jogador>
+  <Jogador>
+    <Id>4</Id>
+    <Nome>Felipe</Nome>
+    <MesReferencia>Dezembro</MesReferencia>
+    <StatusPG>SIM</StatusPG>
+  </Jogador>
+  <Jogador>
+    <Id>5</Id>
+    <Nome>Zé Roberto</Nome>
+    <MesReferencia>Dezembro</MesReferencia>
+    <StatusPG>SIM</StatusPG>
+  </Jogador>
+  <Jogador>
+    <Id>6</Id>
+    <Nome>Zé Osseos</Nome>
+    <MesReferencia>Dezembro</MesReferencia>
+    <StatusPG>SIM</StatusPG>
+  </Jogador>
+  <Jogador>
+    <Id>7</Id>
+    <Nome>Carlos</Nome>
+    <MesReferencia>Dezembro</MesReferencia>
+    <StatusPG>SIM</StatusPG>
+  </Jogador>
+  <Jogador>
+    <Id>8</Id>
+    <Nome>Julio</Nome>
+    <MesReferencia>Dezembro</MesReferencia>
+    <StatusPG>SIM</StatusPG>
+  </Jogador>
+  <Jogador>
+    <Id>9</Id>
+    <Nome>Sidney</Nome>
+    <MesReferencia>Dezembro</MesReferencia>
+    <StatusPG>SIM</StatusPG>
+  </Jogador>
+  <Jogador>
+    <Id>10</Id>
+    <Nome>Mauricio</Nome>
+    <MesReferencia>Dezembro</MesReferencia>
+    <StatusPG>SIM</StatusPG>
+  </Jogador>
+  <configuracaoQuina mesReference="Referência (Abril/2016)  " inicioJogo=" 4056  " fimJogo=" 4079"></configuracaoQuina>
+</BolaoQuina>
