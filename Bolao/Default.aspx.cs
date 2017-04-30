@@ -197,27 +197,27 @@ namespace Bolao
                     
 
 
-                    if ((numerosDaQuina[i][1]).PadLeft(2, '0') == item.ToString().PadLeft(2, '0'))
+                    if ((numerosDaQuina[i][1]).PadLeft(2, '0').Trim() == item.ToString().PadLeft(2, '0'))
                     {
                         oResultado.numerosAcertados += item.ToString().PadLeft(2, '0') + "-";
                         oResultado.acertosQuina += contador;
                     }
-                    if (numerosDaQuina[i][2].PadLeft(2, '0') == item.ToString().PadLeft(2, '0'))
+                    if (numerosDaQuina[i][2].PadLeft(2, '0').Trim() == item.ToString().PadLeft(2, '0'))
                     {
                         oResultado.numerosAcertados += item.ToString().PadLeft(2, '0') + "-"; ;
                         oResultado.acertosQuina += contador;
                     }
-                    if (numerosDaQuina[i][3].PadLeft(2, '0') == item.ToString().PadLeft(2, '0'))
+                    if (numerosDaQuina[i][3].PadLeft(2, '0').Trim() == item.ToString().PadLeft(2, '0'))
                     {
                         oResultado.numerosAcertados += item.ToString().PadLeft(2, '0') + "-"; ;
                         oResultado.acertosQuina += contador;
                     }
-                    if (numerosDaQuina[i][4].PadLeft(2, '0') == item.ToString().PadLeft(2, '0'))
+                    if (numerosDaQuina[i][4].PadLeft(2, '0').Trim() == item.ToString().PadLeft(2, '0'))
                     {
                         oResultado.numerosAcertados += item.ToString().PadLeft(2, '0') + "-";
                         oResultado.acertosQuina += contador;
                     }
-                    if (numerosDaQuina[i][5].PadLeft(2, '0') == item.ToString().PadLeft(2, '0'))
+                    if (numerosDaQuina[i][5].PadLeft(2, '0').Trim() == item.ToString().PadLeft(2, '0'))
                     {
                         oResultado.numerosAcertados += item.ToString().PadLeft(2, '0') + "-"; 
                         oResultado.acertosQuina += contador;
@@ -329,28 +329,66 @@ namespace Bolao
 
         }
 
+        public string[] loadJogos()
+        {
+            StreamReader loadFile = new StreamReader("C:\\ProjetoEdmilson\\jogos.txt");
+            string[] jogosQuinaFile = new string[16];
+            int count = 0;
+            while (!loadFile.EndOfStream)
+            {
+                string linha = loadFile.ReadLine();
+                jogosQuinaFile[count] = linha.Replace("\"", "''");
+                count++;
+
+
+            }
+            return jogosQuinaFile;
+        }
 
         public List<string[]> preencheNumero()
         {
 
-            string[] jogos01 = { "JG (01)", "15", "16", "44", "67", "78" };
-            string[] jogos02 = { "JG (02)", "22", "37", "49", "53", "76" };
-            string[] jogos03 = { "JG (03)", "04", "33", "51", "58", "62" };
-            string[] jogos04 = { "JG (04)", "05", "13", "14", "26", "71" };
-            string[] jogos05 = { "JG (05)", "28", "29", "40", "43", "69" };
-            string[] jogos06 = { "JG (06)", "08", "31", "50", "74", "77" };
-            string[] jogos07 = { "JG (07)", "10", "19", "24", "59", "66" };
-            string[] jogos08 = { "JG (08)", "01", "21", "39", "56", "68" };
-            string[] jogos09 = { "JG (09)", "11", "18", "36", "55", "79" };
-            string[] jogos10 = { "JG (10)", "02", "07", "23", "42", "75" };
-            string[] jogos11 = { "JG (11)", "03", "09", "17", "38", "41" };
-            string[] jogos12 = { "JG (12)", "25", "47", "46", "64", "72" };
-            string[] jogos13 = { "JG (13)", "06", "12", "27", "30", "45" };
-            string[] jogos14 = { "JG (14)", "32", "61", "70", "73", "80" };
-            string[] jogos15 = { "JG (15)", "20", "34", "52", "57", "65" };
-            string[] jogos16 = { "JG (16)", "35", "48", "54", "60", "63" };
+            string[] jogosQuinaCarregado;
 
-           
+            jogosQuinaCarregado = loadJogos();
+
+            //string[] jogos01 = { "JG (01)", "15", "16", "44", "67", "78" };
+            //string[] jogos02 = { "JG (02)", "22", "37", "49", "53", "76" };
+            //string[] jogos03 = { "JG (03)", "04", "33", "51", "58", "62" };
+            //string[] jogos04 = { "JG (04)", "05", "13", "14", "26", "71" };
+            //string[] jogos05 = { "JG (05)", "28", "29", "40", "43", "69" };
+            //string[] jogos06 = { "JG (06)", "08", "31", "50", "74", "77" };
+            //string[] jogos07 = { "JG (07)", "10", "19", "24", "59", "66" };
+            //string[] jogos08 = { "JG (08)", "01", "21", "39", "56", "68" };
+            //string[] jogos09 = { "JG (09)", "11", "18", "36", "55", "79" };
+            //string[] jogos10 = { "JG (10)", "02", "07", "23", "42", "75" };
+            //string[] jogos11 = { "JG (11)", "03", "09", "17", "38", "41" };
+            //string[] jogos12 = { "JG (12)", "25", "47", "46", "64", "72" };
+            //string[] jogos13 = { "JG (13)", "06", "12", "27", "30", "45" };
+            //string[] jogos14 = { "JG (14)", "32", "61", "70", "73", "80" };
+            //string[] jogos15 = { "JG (15)", "20", "34", "52", "57", "65" };
+            //string[] jogos16 = { "JG (16)", "35", "48", "54", "60", "63" };
+
+
+
+            string[] jogos01 = jogosQuinaCarregado[0].ToString().Split(',');
+            string[] jogos02 = jogosQuinaCarregado[1].ToString().Split(',');
+            string[] jogos03 = jogosQuinaCarregado[2].ToString().Split(',');
+            string[] jogos04 = jogosQuinaCarregado[3].ToString().Split(',');
+            string[] jogos05 = jogosQuinaCarregado[4].ToString().Split(',');
+            string[] jogos06 = jogosQuinaCarregado[5].ToString().Split(',');
+            string[] jogos07 = jogosQuinaCarregado[6].ToString().Split(',');
+            string[] jogos08 = jogosQuinaCarregado[7].ToString().Split(',');
+            string[] jogos09 = jogosQuinaCarregado[8].ToString().Split(',');
+            string[] jogos10 = jogosQuinaCarregado[9].ToString().Split(',');
+            string[] jogos11 = jogosQuinaCarregado[10].ToString().Split(',');
+            string[] jogos12 = jogosQuinaCarregado[11].ToString().Split(',');
+            string[] jogos13 = jogosQuinaCarregado[12].ToString().Split(',');
+            string[] jogos14 = jogosQuinaCarregado[13].ToString().Split(',');
+            string[] jogos15 = jogosQuinaCarregado[14].ToString().Split(',');
+            string[] jogos16 = jogosQuinaCarregado[15].ToString().Split(',');
+
+
 
 
             ////// Jogos extras

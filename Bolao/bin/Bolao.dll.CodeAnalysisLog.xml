@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="c:\program files (x86)\microsoft visual studio\2017\community\team tools\static analysis tools\fxcop\Xml\CodeAnalysisReport.xsl"?>
+<FxCopReport Version="15.0">
+ <Targets>
+  <Target Name="C:\ProjetoEdmilson\bolaoFitec\bolaoguatyoficial\Bolao\bin\Bolao.dll">
+   <Modules>
+    <Module Name="bolao.dll">
+     <Namespaces>
+      <Namespace Name="Bolao.DAO">
+       <Types>
+        <Type Name="AcessoDAO" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001" Status="Active" Created="2017-04-30 02:28:23Z" FixCategory="DependsOnFix">
+           <Issue Name="DependsOnFix" Certainty="95" Level="CriticalError">Implemente IDisposable em 'AcessoDAO' porque cria membros dos seguintes tipos IDisposable: 'SqlConnection'. Se 'AcessoDAO' tiver enviado anteriormente, adicionar novos membros que implementem IDisposable a esse tipo é considerado uma alteração interruptiva para os consumidores existentes.</Issue>
+          </Message>
+         </Messages>
+         <Members>
+          <Member Name="#ExecutaComando(System.Data.SqlClient.SqlCommand)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200" Status="Active" Created="2017-04-30 02:28:23Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Error" Path="C:\ProjetoEdmilson\bolaoFitec\bolaoguatyoficial\Bolao\DAO" File="AcessoDAO.cs" Line="57">'AcessoDAO.ExecutaComando(SqlCommand)' relança uma exceção capturada e a especifica explicitamente como um argumento. Em vez disso, use 'throw' sem um argumento a fim de preservar o local da pilha em que a exceção foi inicialmente gerada.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ExecutaProcQuery(System.Data.SqlClient.SqlCommand)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200" Status="Active" Created="2017-04-30 02:28:23Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Error" Path="C:\ProjetoEdmilson\bolaoFitec\bolaoguatyoficial\Bolao\DAO" File="AcessoDAO.cs" Line="111">'AcessoDAO.ExecutaProcQuery(SqlCommand)' relança uma exceção capturada e a especifica explicitamente como um argumento. Em vez disso, use 'throw' sem um argumento a fim de preservar o local da pilha em que a exceção foi inicialmente gerada.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ExecutaQuery(System.Data.SqlClient.SqlCommand)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200" Status="Active" Created="2017-04-30 02:28:23Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Error" Path="C:\ProjetoEdmilson\bolaoFitec\bolaoguatyoficial\Bolao\DAO" File="AcessoDAO.cs" Line="88">'AcessoDAO.ExecutaQuery(SqlCommand)' relança uma exceção capturada e a especifica explicitamente como um argumento. Em vez disso, use 'throw' sem um argumento a fim de preservar o local da pilha em que a exceção foi inicialmente gerada.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="BolaoUTIL" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#cadastrarJogos(System.String,System.String,System.Int32,System.Decimal,System.Int32,System.Int32,System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200" Status="Active" Created="2017-04-30 02:28:23Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Error" Path="C:\ProjetoEdmilson\bolaoFitec\bolaoguatyoficial\Bolao\DAO" File="BolaoUTIL.cs" Line="114">'BolaoUTIL.cadastrarJogos(string, string, int, decimal, int, int, string)' relança uma exceção capturada e a especifica explicitamente como um argumento. Em vez disso, use 'throw' sem um argumento a fim de preservar o local da pilha em que a exceção foi inicialmente gerada.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+ </Targets>
+ <Rules>
+  <Rule TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200">
+   <Name>Relançar para preservar detalhes da pilha</Name>
+   <Description>Use a instrução IL rethrow para preservar os detalhes da pilha original ao reacionar uma exceção capturada.</Description>
+   <Resolution Name="Default">{0} relança uma exceção capturada e a especifica explicitamente como um argumento. Em vez disso, use 'throw' sem um argumento a fim de preservar o local da pilha em que a exceção foi inicialmente gerada.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182363.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Error</MessageLevel>
+   <File Name="usagerules.dll" Version="15.0.0.0" />
+  </Rule>
+  <Rule TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001">
+   <Name>Tipos que possuem campos descartáveis devem ser descartáveis</Name>
+   <Description>Os tipos que declaram membros descartáveis também devem implementar IDisposable. Se o tipo não tiver recursos próprios não gerenciados, não implemente um finalizador nele.</Description>
+   <Resolution Name="DependsOnFix">Implemente IDisposable em {0} porque cria membros dos seguintes tipos IDisposable: {1}. Se {0} tiver enviado anteriormente, adicionar novos membros que implementem IDisposable a esse tipo é considerado uma alteração interruptiva para os consumidores existentes.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182172.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">CriticalError</MessageLevel>
+   <File Name="designrules.dll" Version="15.0.0.0" />
+  </Rule>
+ </Rules>
+ <Localized>
+  <String Key="Category">Categoria</String>
+  <String Key="Certainty">Certeza</String>
+  <String Key="CollapseAll">Recolher Tudo</String>
+  <String Key="CheckId">Verificar ID</String>
+  <String Key="Error">Erro</String>
+  <String Key="Errors">erro(s)</String>
+  <String Key="ExpandAll">Expandir Tudo</String>
+  <String Key="Help">Ajuda</String>
+  <String Key="Line">Linha</String>
+  <String Key="Messages">mensagem(ns)</String>
+  <String Key="LocationNotStoredInPdb">[Local não armazenado em Pdb]</String>
+  <String Key="Project">Projeto</String>
+  <String Key="Resolution">Resolução</String>
+  <String Key="Rule">Regra</String>
+  <String Key="RuleFile">Arquivo de Regra</String>
+  <String Key="RuleDescription">Descrição da Regra</String>
+  <String Key="Source">Origem</String>
+  <String Key="Status">Status</String>
+  <String Key="Target">Destino</String>
+  <String Key="Warning">Aviso</String>
+  <String Key="Warnings">aviso(s)</String>
+  <String Key="ReportTitle">Relatório de Análise de Código</String>
+ </Localized>
+</FxCopReport>

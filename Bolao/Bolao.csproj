@@ -187,6 +187,7 @@
     <Content Include="imagens\download.png" />
     <Content Include="imagens\Musicas de festa junina %28São João%29.mp3" />
     <Content Include="imagens\tartarugas.jpg" />
+    <Content Include="jogos.txt" />
     <Content Include="login.aspx" />
     <Content Include="quinaJogadores.xml">
       <SubType>Designer</SubType>
