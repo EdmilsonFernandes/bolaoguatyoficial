@@ -183,7 +183,9 @@
              <td class="well" rowspan="2" style="text-align:left;vertical-align:top;padding:0" >
 
              
-                 <fieldset><legend class="titulo-quina" style="width: 98%"><span style="color: #FFFFFF"><strong><span style="font-size: large">Jogos válidos de:</span> <span style="font-size: large">Nº </span></strong></span><strong><asp:Label runat="server" ID="lblStartNumber" Text="4056" ForeColor="White" style="font-size: large"></asp:Label>   </strong>   <span style="color: #FFFFFF"><strong><span style="font-size: large">&nbsp;até</span></strong></span><span style="font-size: large"> </span><strong> <span style="color: #FFFFFF"><span style="font-size: large">Nº </span></span> <asp:Label runat="server" ID="lblEndNumber" Text="4079" ForeColor="White" style="font-size: large"></asp:Label>   &nbsp; <asp:Label runat="server" ID="Label6" Text="- Referência (Abril/2016)" ForeColor="White" style="font-size: large"></asp:Label>   </strong>   </legend>
+                 <fieldset><legend class="titulo-quina" style="width: 98%"><span style="color: #FFFFFF"><strong><span style="font-size: large">Jogos válidos de:</span> <span style="font-size: large">Nº  
+                          <asp:Label runat="server" ID="lblStartNumber" Text="4056" ForeColor="White" style="font-size: large"></asp:Label>      &nbsp;até</span></strong></span><span style="font-size: large"> </span><strong> <span style="color: #FFFFFF"><span style="font-size: large">Nº </span></span> 
+                     <asp:Label runat="server" ID="lblEndNumber" Text="4079" ForeColor="White" style="font-size: large"></asp:Label>   &nbsp; <asp:Label runat="server" ID="Label6" Text="- Referência (Abril/2016)" ForeColor="White" style="font-size: large"></asp:Label>   </strong>   </legend>
             
                  <asp:GridView ID="GridView2" CssClass="table table-striped table-bordered table-condensed table-hover" runat="server" AutoGenerateColumns="False" Font-Bold="True" Font-Size="Small" OnRowDataBound="GridView2_RowDataBound">
                      <Columns>

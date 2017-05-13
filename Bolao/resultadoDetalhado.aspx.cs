@@ -5,28 +5,39 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Bolao.Models;
+using Bolao.DAO;
 using System.Reflection;
+using System.Data;
+
 
 namespace Bolao
 {
     public partial class resultadoDetalhado : System.Web.UI.Page
     {
         decimal SomaFesta = 0;
+        string final = "";
+        string inicial = "";
+        
+   
+       
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            if (!base.IsPostBack)
             {
-                if (Session["Initial"] != null || Session["Final"]  != null)
+                if ((Session["Initial"] != null) || (Session["Final"] !=null))
                 {
-                    LabelInitial.Text = Session["Initial"].ToString();
-                    Label2Final.Text = Session["Final"].ToString();
-                    geraEstatistica();
+                    this.LabelInitial.Text = this.Session["Initial"].ToString();
+                    this.Label2Final.Text = this.Session["Final"].ToString();
+                    this.preencheDropdownlist();
+                    this.buscaJogosPorIntervalos();
+                    this.geraEstatistica();
                 }
                 else
                 {
-                    Response.Redirect("Default.aspx");
+                    base.Response.Redirect("Default.aspx");
                 }
             }
+
         }
 
         protected void grdGeral_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -168,5 +179,55 @@ namespace Bolao
         {
             Response.Redirect("Default.aspx");
         }
+
+
+        public void buscaJogosPorIntervalos()
+        {
+            string[] strArray = null;
+            char[] separator = new char[] { '-' };
+            strArray = this.dpdIntervalos.SelectedItem.Text.Split(separator);
+            this.inicial = strArray[0];
+            this.final = strArray[1];
+            this.LabelInitial.Text = this.inicial;
+            this.Label2Final.Text = this.final;
+            this.preencheGridView(Convert.ToInt32(this.inicial), Convert.ToInt32(this.final));
+        }
+
+        protected void dpdIntervalos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.buscaJogosPorIntervalos();
+        }
+        protected void lvDetail_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        }
+        public void preencheDropdownlist()
+        {
+            BolaoUTIL oBuscaIntervalos = new BolaoUTIL();
+            ListaIntervalo intervalo = new ListaIntervalo();
+            List<string> list = new List<string>();
+            intervalo =  oBuscaIntervalos.buscaIntervalos();
+            this.dpdIntervalos.DataSource = intervalo;
+            this.dpdIntervalos.DataTextField = "display";
+            this.dpdIntervalos.DataValueField = "value";
+            this.dpdIntervalos.DataBind();
+        }
+
+        public void preencheGridView(int inicial, int final)
+        {
+             BolaoUTIL oBuscaIntervalos = new BolaoUTIL();
+            DataSet set = new DataSet();
+            set = oBuscaIntervalos.buscaIntervalosGrid(inicial, final);
+            this.grdGeral.DataSource = set.Tables[0];
+            this.grdGeral.DataBind();
+        }
+
+
+
+
+
+
+
+
+
     }
 }

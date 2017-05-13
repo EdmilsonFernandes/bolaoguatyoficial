@@ -402,8 +402,10 @@
     <Compile Include="Models\EstaticaBolao.cs" />
     <Compile Include="Models\Ganhadores.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\IntervaloBolao.cs" />
     <Compile Include="Models\JogosQuina.cs" />
     <Compile Include="Models\JSONHelper.cs" />
+    <Compile Include="Models\ListaIntervalo.cs" />
     <Compile Include="Models\Loteria.cs" />
     <Compile Include="Models\Premio.cs" />
     <Compile Include="Models\ResultadoQuina.cs" />

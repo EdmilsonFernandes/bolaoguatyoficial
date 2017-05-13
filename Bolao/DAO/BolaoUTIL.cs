@@ -4,7 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
-
+using Bolao.Models;
 namespace Bolao.DAO
 {
     public class BolaoUTIL:DAO.AcessoDAO
@@ -117,6 +117,93 @@ namespace Bolao.DAO
                 throw e;
             }
         }
+
+        public ListaIntervalo buscaIntervalos()
+        {
+            ListaIntervalo intervalo;
+            List<string> list = new List<string>();
+            string cmdText = "select distinct  concat(referencia_inicial ,' - ', referencia_final) as display ,  concat(referencia_inicial ,' - ', referencia_final) as value from extrato_bolao order by display desc";
+            try
+            {
+                SqlCommand cmd = new SqlCommand(cmdText);
+                DataTable dt = base.ExecutaSelect(cmd);
+                intervalo = populaDropdownIntervalosJogos(dt);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return intervalo;
+        }
+
+
+
+        public DataSet buscaIntervalosGrid(int inicial, int final)
+        {
+            DataSet set2;
+            object[] objArray1 = new object[] { "SELECT [JOGOS], [TIPO_ACERTO], [VALOR], [QUANTIDADES], [NUMERO_SORTEIO] FROM [EXTRATO_BOLAO] WHERE [REFERENCIA_INICIAL] =", inicial, " AND REFERENCIA_FINAL =", final, " AND VALOR <> 0" };
+            string cmdText = string.Concat(objArray1);
+            try
+            {
+                SqlCommand cmd = new SqlCommand(cmdText);
+                set2 = base.ExecutaProcQuerySelect(cmd);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return set2;
+        }
+
+
+
+
+       
+
+        public List<string> buscaJogosEstatistica(int inicial, int final)
+        {
+            List<string> list2;
+            List<string> list = new List<string>();
+            string cmdText = "SP_BUSCA_EXTRATO_ESTATISTICA";
+            try
+            {
+                SqlCommand cmd = new SqlCommand(cmdText);
+                cmd.Parameters.AddWithValue("@INITIAL", inicial);
+                cmd.Parameters.AddWithValue("@FINAL", final);
+                DataTable dt = base.ExecutaQuery(cmd);
+                list2 = this.populaExtrato(dt);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return list2;
+        }
+
+
+        private ListaIntervalo populaDropdownIntervalosJogos(DataTable dt)
+        {
+            List<string> list = new List<string>();
+            ListaIntervalo intervalo = new ListaIntervalo();
+            foreach (DataRow row in dt.Rows)
+            {
+                IntervaloBolao item = new IntervaloBolao
+                {
+                    display = row["display"].ToString(),
+                    value = row["value"].ToString()
+                };
+                intervalo.Add(item);
+            }
+            return intervalo;
+        }
+
+
+
+
+
+
+
+
 
     }
 }

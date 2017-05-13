@@ -114,6 +114,55 @@ namespace Bolao.DAO
             }
         }
 
+        public DataSet ExecutaProcQuerySelect(SqlCommand cmd)
+        {
+            DataSet set2;
+            try
+            {
+                this.conn.Open();
+                cmd.Connection = this.conn;
+                cmd.CommandType = CommandType.Text;
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                DataSet dataSet = new DataSet();
+                adapter.Fill(dataSet);
+                this.conn.Close();
+                set2 = dataSet;
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
+            return set2;
+        }
+
+        public DataTable ExecutaSelect(SqlCommand cmd)
+        {
+            DataTable table2;
+            try
+            {
+                if (this.conn.State == ConnectionState.Open)
+                {
+                    this.conn.Close();
+                }
+                this.conn.Open();
+                cmd.Connection = this.conn;
+                cmd.CommandType = CommandType.Text;
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                DataTable dataTable = new DataTable();
+                cmd.CommandTimeout = 150;
+                adapter.Fill(dataTable);
+                this.conn.Close();
+                table2 = dataTable;
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
+            return table2;
+        }
+
+
+
 
         #endregion
     }

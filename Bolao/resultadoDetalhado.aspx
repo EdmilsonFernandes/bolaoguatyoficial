@@ -38,10 +38,7 @@
             width: auto;
             height: auto;
         }
-        .auto-style3 {
-            width: 711px;
-        }
-    </style>
+        </style>
 
 </head>
 
@@ -51,30 +48,33 @@
       
         <center>   <div>
                     <h2 class="titulo-quina alert-success" style="height: 58px"> &nbsp;<span>Resultado detalhado - Bolão da Quina ! </span></h2>
-           <strong><span class="auto-style1">Jogos - Inicial:</span></strong> <strong>  <asp:Label ID="LabelInitial" runat="server" Text="" CssClass="auto-style1"></asp:Label></strong>
-                            
-                                <strong><span class="auto-style1"> Até </span></strong>
+                    <strong><span class="auto-style1">Escolha intervalo de jogos: </span></strong>&nbsp;<span><strong><asp:DropDownList  ID="dpdIntervalos" runat="server" CssClass="dropdown-toggle btn-success" Height="40px" style="font-size: medium; font-weight: bold;" Width="176px" AutoPostBack="True"  DataTextField="display"   DataValueField="value" OnSelectedIndexChanged="dpdIntervalos_SelectedIndexChanged">
+                    </asp:DropDownList>
+                    <br />
+                  
+                    <br />
+                    </strong> </span><strong><span class="auto-style1">Tabela do intervalo escolhido: - Inicial:  <asp:Label ID="LabelInitial" runat="server" CssClass="auto-style1" Font-Bold="True" Font-Size="Large"></asp:Label></span></strong> &nbsp;<strong><span class="auto-style1">Até </span></strong>
                            
-                                 <span class="auto-style1"> - <strong> Final: </strong></span><strong> <asp:Label ID="Label2Final" runat="server" Text="" CssClass="auto-style1"></asp:Label></strong>
+                                 <span class="auto-style1"> - <strong> Final: </strong></span><strong>  <asp:Label ID="Label2Final" runat="server" CssClass="auto-style1" Font-Bold="True" Font-Size="Large"></asp:Label> </strong>
                       
            
-            <asp:GridView ID="grdGeral" CssClass="GridView" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" Font-Bold="True" Height="191px" OnRowDataBound="grdGeral_RowDataBound">
+            <asp:GridView ID="grdGeral" CssClass="GridView" runat="server" AutoGenerateColumns="False" Font-Bold="True" Height="191px" OnRowDataBound="grdGeral_RowDataBound">
                 <Columns>
-                    <asp:BoundField DataField="JOGOS" HeaderText="Números Acertados" SortExpression="JOGOS" >
+                    <asp:BoundField DataField="JOGOS" HeaderText="NÚMEROS ACERTADOS" SortExpression="JOGOS" >
                     <FooterStyle />
                     </asp:BoundField>
-                    <asp:BoundField DataField="TIPO_ACERTO" HeaderText="Tipo de Acerto" SortExpression="TIPO_ACERTO" />
-                    <asp:BoundField DataField="QUANTIDADES" HeaderText="Concurso " SortExpression="QUANTIDADES" />
-                    <asp:BoundField DataField="VALOR" HeaderText="Valor do acerto" SortExpression="VALOR" />
-                    <asp:BoundField DataField="NUMERO_SORTEIO" HeaderText="Números Sorteados" SortExpression="NUMERO_SORTEIO" />
+                    <asp:BoundField DataField="TIPO_ACERTO" HeaderText="TIPO DE ACERTO" SortExpression="TIPO_ACERTO" />
+                
+                    <asp:BoundField DataField="QUANTIDADES" HeaderText="NÚMERO DO SORTEIO DA QUINA" SortExpression="QUANTIDADES" />
+                     <asp:BoundField DataField="VALOR" HeaderText="VALOR" SortExpression="VALOR" />
+                    <asp:BoundField DataField="NUMERO_SORTEIO" HeaderText="JOGOS SORTEADOS" SortExpression="NUMERO_SORTEIO" />
+                       
                 </Columns>
             </asp:GridView>
                     
     
-
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:AzuliPortalConnectionString %>" SelectCommand="SELECT [JOGOS], [TIPO_ACERTO], [QUANTIDADES], [VALOR], [REFERENCIA_INICIAL], [REFERENCIA_FINAL], [NUMERO_SORTEIO] FROM [EXTRATO_BOLAO] WHERE VALOR <> 0 "></asp:SqlDataSource>
-                  
-                    <strong><span class="auto-style2">Valor total já ganho</span></strong><span class="auto-style2">: </span><strong>  <asp:Label ID="lblValorTotal" runat="server" CssClass="auto-style1" Font-Bold="True" Font-Italic="True" ForeColor="#006600" Font-Size="X-Large" ></asp:Label>
+                  <br />
+                    <strong><span class="auto-style2">Valor total já ganho neste intervalo -></span></strong><span class="auto-style2">: </span><strong>  <asp:Label ID="lblValorTotal" runat="server" CssClass="auto-style1" Font-Bold="True" Font-Italic="True" ForeColor="#006600" Font-Size="X-Large" ></asp:Label>
          
                     <br />
                     <br />
@@ -93,7 +93,7 @@
             <table>
                 <tr>
                     <td>
-            <asp:ListView ID="lvDetail" runat="server">
+            <asp:ListView ID="lvDetail" runat="server" OnSelectedIndexChanged="lvDetail_SelectedIndexChanged">
                 <ItemTemplate>
                     <tr>
                         <td><%# Eval("numero")%></td>
@@ -104,8 +104,8 @@
                 <LayoutTemplate>
                     <table id="tbl1" runat="server">
                         <tr id="tr1" class="myitem" runat="server">
-                            <td id="td1" runat="server"><strong> Sorteado</strong></td>
-                            <td id="td2" runat="server"><strong>Qtds que saiu</strong></td>
+                            <td id="td1" runat="server"><strong>Nº</strong></td>
+                            <td id="td2" runat="server"><strong>Qtds X que saiu</strong></td>
 
                         </tr>
                         <tr id="ItemPlaceholder" runat="server">
@@ -126,8 +126,8 @@
                 <LayoutTemplate>
                     <table id="tbl1" runat="server">
                         <tr id="tr1" class="myitem" runat="server">
-                            <td id="td1" runat="server"><strong> Números que nunca sairam</strong></td>
-                            <td id="td2" runat="server"><strong>Quantidade</strong></td>
+                            <td id="td1" runat="server"><strong>Nº (Nunca saiu)</strong></td>
+                            <td id="td2" runat="server"><strong>Qtds</strong></td>
 
                         </tr>
                         <tr id="ItemPlaceholder" runat="server">

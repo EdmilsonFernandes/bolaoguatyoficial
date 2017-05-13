@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -14,45 +15,41 @@ namespace Bolao
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if (!base.IsPostBack)
             {
-                if (System.Web.HttpContext.Current.Session["ok"].ToString() == "True" && !System.Web.HttpContext.Current.Session["ok"].Equals(null))
+                if ((HttpContext.Current.Session["ok"].ToString() == "True") && !HttpContext.Current.Session["ok"].Equals(null))
                 {
-                    carregaXMLGridview();
-
+                    this.carregaXMLGridview();
                 }
                 else
                 {
-                    Session["ok"] = false;
-                    Response.Redirect("~/Default.aspx");
+                    this.Session["ok"] = false;
+                    base.Response.Redirect("~/Default.aspx");
                 }
-
             }
+
 
         }
 
         public void carregaXMLGridview()
         {
-            DataSet ds = new DataSet();
-
-            ds.ReadXml(Server.MapPath(@"quinaJogadores.xml"));
-
-            if (ds.Tables.Count > 0)
+            int num2;
+            DataSet set = new DataSet();
+            set.ReadXml(base.Server.MapPath("quinaJogadores.xml"));
+            if (set.Tables.Count > 0)
             {
-                GridView2.DataSource = ds;
-                GridView2.DataBind();
+                this.GridView2.DataSource = set;
+                this.GridView2.DataBind();
+            }
+            for (int i = 0; i < set.Tables[1].Rows.Count; i = num2 + 1)
+            {
+                this.TextBox6.Text = set.Tables[1].Rows[i][0].ToString();
+                this.TextBox4.Text = set.Tables[1].Rows[i][1].ToString();
+                this.TextBox5.Text = set.Tables[1].Rows[i][2].ToString();
+                num2 = i;
             }
 
 
-            for (int i = 0; i < ds.Tables[1].Rows.Count; i++)
-            {
-                TextBox6.Text = ds.Tables[1].Rows[i][0].ToString();
-                TextBox5.Text = ds.Tables[1].Rows[i][1].ToString();
-                TextBox4.Text = ds.Tables[1].Rows[i][2].ToString();
-            }
-
-           
-         
         }
 
         protected void GridView2_SelectedIndexChanged(object sender, EventArgs e)
@@ -68,6 +65,80 @@ namespace Bolao
             carregaXMLGridview();
 
         }
+
+        protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
+        {
+
+            string str = "quinaJogadores.xml";
+            string str2 = base.Server.MapPath(System.IO.Path.Combine("~", str));
+            base.Response.Clear();
+            base.Response.ContentType = "Application/xml";
+            base.Response.AddHeader("Content-Disposition", string.Format("Attachment; FileName={0}", str2));
+            base.Response.TransmitFile(str);
+            base.Response.End();
+        }
+
+
+
+
+        protected void btnUpload_Click(object sender, EventArgs e)
+        {
+            double num = 0.0;
+            double num2 = 1000.0;
+            string str = "0";
+            string str2 = "";
+            string path = "";
+            if (this.fluploadXml.PostedFile.FileName != "")
+            {
+                string fileName = this.fluploadXml.PostedFile.FileName;
+                num = Convert.ToDouble(this.fluploadXml.PostedFile.ContentLength) / 2048.0;
+                str2 = fileName.Substring(fileName.Length - 4).ToLower();
+                if (num > num2)
+                {
+                    this.lblMsg.Text = "Tamanho Máximo permitido \x00e9 de " + num2 + " kb!";
+                    str = "1";
+                }
+                if (str2.Trim() != ".xml")
+                {
+                    this.lblMsg.Text = "Extensao invalida, é permitida apenas .xml";
+                    str = "2";
+                }
+                path = base.Server.MapPath(Path.Combine("~", fileName));
+                if (str == "0")
+                {
+                    try
+                    {
+                        if (File.Exists(path))
+                        {
+                            File.Delete(path);
+                            this.fluploadXml.SaveAs(path);
+                            this.lblMsg.Text = "Arquivo publicado com sucesso!!";
+                        }
+                        else
+                        {
+                            this.fluploadXml.SaveAs(path);
+                            this.lblMsg.Text = "Arquivo publicado com sucesso!!";
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        throw;
+                    }
+                }
+            }
+            else
+            {
+                this.lblMsg.Text = "Nao existe arquivo selecionado!!";
+            }
+        }
+
+
+
+
+       
+
+
+
 
         protected void GridView2_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {

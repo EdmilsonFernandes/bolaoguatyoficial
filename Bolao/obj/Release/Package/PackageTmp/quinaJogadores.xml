@@ -60,5 +60,5 @@
     <MesReferencia>Dezembro</MesReferencia>
     <StatusPG>SIM</StatusPG>
   </Jogador>
-  <configuracaoQuina mesReference="Referência (Abril/2016)  " inicioJogo=" 4056  " fimJogo=" 4079"></configuracaoQuina>
+  <configuracaoQuina mesReference="Referência (Abril/2016)  " inicioJogo=" 4070" fimJogo=" 4098"></configuracaoQuina>
 </BolaoQuina>

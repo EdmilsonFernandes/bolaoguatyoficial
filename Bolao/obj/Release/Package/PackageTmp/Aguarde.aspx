@@ -25,7 +25,7 @@
 <body>
     <form id="form1" runat="server">
    <center> <div id="divCarregando" class="progresso">
-    <h1> SORTEIO AINDA NÃO SAIU!!!</h1>
+    <h3> SORTEIO AINDA NÃO SAIU OU WEBSERVICE DO FORNECEDOR NÃO ESTÁ RESPONDENDO</h3>
      </div>  <asp:Button ID="btnTentarAgain" runat="server" Text="Aguarde ou clique aqui para tentar novamente!!" Font-Bold="True" Font-Size="Large" OnClick="btnTentarAgain_Click" /> </center>
        
 
