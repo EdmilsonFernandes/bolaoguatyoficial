@@ -43,6 +43,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="HtmlAgilityPack, Version=1.5.1.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Users\edmls\Documents\Visual Studio 2017\Projects\WebApplication6\WebApplication6\bin\HtmlAgilityPack.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -185,8 +189,10 @@
     <None Include="Properties\PublishProfiles\EdBolao.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="imagens\download.png" />
+    <Content Include="imagens\jogosGuaty.txt" />
     <Content Include="imagens\Musicas de festa junina %28São João%29.mp3" />
     <Content Include="imagens\tartarugas.jpg" />
+    <Content Include="imagens\txtFile.png" />
     <Content Include="jogos.txt" />
     <Content Include="login.aspx" />
     <Content Include="quinaJogadores.xml">
@@ -407,6 +413,7 @@
     <Compile Include="Models\JSONHelper.cs" />
     <Compile Include="Models\ListaIntervalo.cs" />
     <Compile Include="Models\Loteria.cs" />
+    <Compile Include="Models\MatchLoadPage.cs" />
     <Compile Include="Models\Premio.cs" />
     <Compile Include="Models\ResultadoQuina.cs" />
     <Compile Include="Models\Sorteio.cs" />

@@ -130,3 +130,6 @@ C:\ProjetoEdmilson\bolaoFitec\bolaoguatyoficial\Bolao\bin\Microsoft.Owin.Securit
 C:\ProjetoEdmilson\bolaoFitec\bolaoguatyoficial\Bolao\obj\Release\Bolao.csprojResolveAssemblyReference.cache
 C:\ProjetoEdmilson\bolaoFitec\bolaoguatyoficial\Bolao\obj\Release\Bolao.dll
 C:\ProjetoEdmilson\bolaoFitec\bolaoguatyoficial\Bolao\obj\Release\Bolao.pdb
+C:\ProjetoEdmilson\bolaoFitec\bolaoguatyoficial\Bolao\bin\HtmlAgilityPack.dll
+C:\ProjetoEdmilson\bolaoFitec\bolaoguatyoficial\Bolao\bin\HtmlAgilityPack.pdb
+C:\ProjetoEdmilson\bolaoFitec\bolaoguatyoficial\Bolao\bin\HtmlAgilityPack.xml

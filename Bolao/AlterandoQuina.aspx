@@ -41,6 +41,9 @@ fieldset legend {
         .auto-style4 {
             width: 703px;
         }
+        .auto-style5 {
+            color: #FF0000;
+        }
     </style>
 
     <fieldset>
@@ -211,7 +214,40 @@ fieldset legend {
         </tr>
     </table>
 
-   
+        <fieldset>
+            <legend class="titulo-quina">
+                <asp:Label runat="server" Text="Lista e status de Jogadores" ForeColor="white"></asp:Label>
+            </legend>
+
+            <table class="dijitTabContainerNoLayout">
+                
+                <tr>
+                    <th>Jogos 1 - Guaty</th>
+                    <th>Jogos 2 - Edmilson</th>
+                </tr>
+                <tr>
+                    
+                    <td>
+                        
+                        <asp:GridView ID="GridView3" runat="server" CssClass="table table-striped table-bordered table-condensed table-hover">
+                        </asp:GridView>
+                        <br />
+                        <asp:ImageButton ID="imgFileGuaty" runat="server" Height="27px" ImageUrl="~/imagens/txtFile.png" OnClick="imgFileGuaty_Click" Width="29px" />
+                    &nbsp;
+                    </td>
+                   
+                    <td>
+
+                        <asp:GridView ID="GridView4" runat="server" CssClass="table table-striped table-bordered table-condensed table-hover">
+                        </asp:GridView>
+                         <br />
+                        <asp:ImageButton ID="imgFileEdmilson" runat="server" Height="27px" ImageUrl="~/imagens/txtFile.png" Width="29px" OnClick="imgFileEdmilson_Click" />
+                    </td>
+                </tr>
+            </table>
+            <span class="auto-style5"><strong>*Este jogos pode ser modificados, fazendo download clicando no icone TXT e para jogar no servidor você usar upload (Atualizar xml...)</strong></span>
+
+        </fieldset>
 
     
      <center> <asp:Button ID="btnClosed" CssClass="btn btn-lg btn-primary btn-block" runat="server" Text="Sair" OnClick="btnClosed_Click"></asp:Button>

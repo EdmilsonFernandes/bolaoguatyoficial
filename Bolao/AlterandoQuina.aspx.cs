@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -19,6 +20,7 @@ namespace Bolao
             {
                 if ((HttpContext.Current.Session["ok"].ToString() == "True") && !HttpContext.Current.Session["ok"].Equals(null))
                 {
+                    loadJogosGridview();
                     this.carregaXMLGridview();
                 }
                 else
@@ -54,6 +56,68 @@ namespace Bolao
 
         protected void GridView2_SelectedIndexChanged(object sender, EventArgs e)
         {
+
+        }
+
+        public void loadJogosGridview()
+        {
+
+            string jogosGuaty = "jogosGuaty.txt";
+            string jogoAtual = "jogosByConfig.txt";
+
+
+            DataTable table = new DataTable();
+            table.Columns.Add("Jogos");
+            table.Columns.Add("A");
+            table.Columns.Add("B");
+            table.Columns.Add("C");
+            table.Columns.Add("D");
+            table.Columns.Add("E");
+          
+
+            string pathJogosGuaty = Server.MapPath(Path.Combine("~", jogosGuaty));
+            string pathJogosAtual = Server.MapPath(Path.Combine("~", jogoAtual));
+
+            using (StreamReader oReader = new StreamReader(pathJogosGuaty))
+            {
+                string line = "";
+                while ((line = oReader.ReadLine()) != null)
+                {
+                    string[] part = line.Split(',');
+
+                    table.Rows.Add(part[0], part[1], part[2], part[3], part[4], part[5]);
+
+                }
+
+                GridView3.DataSource = table;
+                GridView3.DataBind();
+
+
+            }
+
+            using (StreamReader oReader = new StreamReader(pathJogosAtual))
+            {
+
+                table.Clear();
+                string line = "";
+                while ((line = oReader.ReadLine()) != null)
+                {
+                    string[] part = line.Split(',');
+
+                    table.Rows.Add(part[0], part[1], part[2], part[3], part[4], part[5]);
+
+                }
+
+                GridView4.DataSource = table;
+                GridView4.DataBind();
+
+
+            }
+
+
+
+
+
 
         }
 
@@ -219,6 +283,45 @@ namespace Bolao
          
 
 
+        }
+
+        protected void imgFileGuaty_Click(object sender, ImageClickEventArgs e)
+        {
+            string jogosGuaty = "jogosGuaty.txt";
+           
+            string pathJogosGuaty = Server.MapPath(Path.Combine("~", jogosGuaty));
+
+            // Prompts user to save file
+            System.Web.HttpResponse response = System.Web.HttpContext.Current.Response;
+          
+            response.AddHeader("Content-Length", pathJogosGuaty.Length.ToString());
+            response.ContentType = "text/plain";
+            response.AppendHeader("Content-Disposition", "attachment; filename=" + jogosGuaty + ";");
+            response.TransmitFile(pathJogosGuaty);
+           
+            response.End();
+            HttpContext.Current.ApplicationInstance.CompleteRequest();
+
+
+
+        }
+
+        protected void imgFileEdmilson_Click(object sender, ImageClickEventArgs e)
+        {
+            string jogos = "jogosByConfig.txt";
+
+            string pathJogos = Server.MapPath(Path.Combine("~", jogos));
+
+            // Prompts user to save file
+            System.Web.HttpResponse response = System.Web.HttpContext.Current.Response;
+
+            response.AddHeader("Content-Length", pathJogos.Length.ToString());
+            response.ContentType = "text/plain";
+            response.AppendHeader("Content-Disposition", "attachment; filename=" + jogos + ";");
+            response.TransmitFile(pathJogos);
+            
+            response.End();
+            HttpContext.Current.ApplicationInstance.CompleteRequest();
         }
     }
 }

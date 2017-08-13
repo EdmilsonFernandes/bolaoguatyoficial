@@ -10,10 +10,10 @@
      
    
     <div>
-                    <h2 class="titulo-quina titulo" style="height: 58px"> &nbsp;<span>Concurso Nº 
+                    <h2 class="titulo-quina titulo" style="height: 58px"> &nbsp;<span>Concurso Nº&nbsp;&nbsp;&nbsp; 
                         <asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="True" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
                         </asp:DropDownList>
-                        <asp:Label ID="lblNumeroConcurso" runat="server" ForeColor="#000066"></asp:Label>
+                        <asp:Label ID="lblNumeroConcurso" runat="server" ForeColor="#291686"></asp:Label>
                         (<asp:Label ID="lblDataConcurso" runat="server"></asp:Label>) - Usuários online:
                         <asp:Label ID="lblUserOnline" runat="server"></asp:Label>
                         </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<img alt="" src="imagens/download.png" style="width: 17px; height: 15px" />&nbsp;<asp:HyperLink ID="HyperLink1" NavigateUrl="~/login.aspx" runat="server" style="font-size: small !important; color: #FFFFFF" Font-Bold="True">Admin</asp:HyperLink>
@@ -66,11 +66,7 @@
                         <span style="font-weight: bold">Estimativa de prêmio do próximo concurso:</span> <span style="font-size: small">R$<asp:Label ID="lblEstimativaValorProximoSorteio" runat="server" Font-Bold="True" Font-Size="Small"></asp:Label></span>
 						
 
-                        <strong><span style="font-size: small">R$</span></strong>
-                         (<asp:Label ID="lblDataProximoConcurso" runat="server" Font-Bold="True" Font-Size="Small"></asp:Label>)
-
-
-                        <span style="font-weight: bold">
+                        &nbsp;<asp:Label ID="lblDataProximoConcurso" runat="server" Font-Bold="True" Font-Size="Small"></asp:Label><span style="font-weight: bold">
                     <br />
                     Acumulado próximo concurso: </span><span class=""><strong><span style="font-size: small">R$ </span></strong>
                             <asp:Label ID="lblAcumladoProximoConcurso" runat="server" Font-Bold="True" Font-Size="Small"></asp:Label></span>
@@ -91,7 +87,7 @@
                  <div runat="server" id="dvScrool" style="width:725px;height:300px; overflow-y:scroll;">
 
                  
-                    <asp:GridView ID="GridView1" CssClass="table table-hover table-striped" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" style="margin-left: 0px" Font-Size="Small" Width="698px" >
+                    <asp:GridView ID="GridView1" EmptyDataText="Infelizmente você nao acertou nenhum número!" CssClass="table table-hover table-striped" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" style="margin-left: 0px" Font-Size="Small" Width="698px" >
                         <Columns>
                             <asp:BoundField DataField="numeroSorteio" HeaderText="Conferindo  &gt;= 1 acerto(s)">
                                 <ControlStyle Font-Bold="True" />
@@ -120,7 +116,7 @@
                         </Columns>
                     </asp:GridView>
                      <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;<asp:LinkButton ID="lnkDetalhado" runat="server" Font-Bold="True" Font-Size="Medium" PostBackUrl="~/resultadoDetalhado.aspx"  OnClick="lnkDetalhado_Click">Resultado detalhado (Clique Aqui)</asp:LinkButton>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;<asp:LinkButton ID="LnkDetalhado" runat="server" Font-Bold="True" Font-Size="Medium" PostBackUrl="~/resultadoDetalhado.aspx"  OnClick="lnkDetalhado_Click">Resultado detalhado (Clique Aqui)</asp:LinkButton>
                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </div>
 

@@ -14,22 +14,26 @@ using System.Xml;
 using Bolao.Models;
 using System.Xml.Linq;
 using System.Drawing;
+using Newtonsoft.Json.Linq;
 
 namespace Bolao
 {
     public partial class Default : System.Web.UI.Page
     {
         List<string[]> numerosDaQuina;
-        string json;
+       
         List<int> numerosSort = new List<int>();
         int[] ordemSorteioQuina = new int[5];
         DAO.BolaoUTIL oBolao = new DAO.BolaoUTIL();
         int isPersit = -1;
-        
-
+        string jsonParsed = "";
+       
+   
         public void escreveJsonFile(string json)
         {
-            string jsonFileName = "jogosJson.txt";
+          
+
+            string jsonFileName = "json.txt";
             string path = base.Server.MapPath(Path.Combine("~", jsonFileName));
             System.IO.File.WriteAllText(path, json);
 
@@ -43,20 +47,11 @@ namespace Bolao
                 try
                 {
 
-                   DateTime dateServer = DateTime.Now;
+                    jsonParsed =  MatchLoadPage.PreencheModelo(Server.MapPath("json.txt")).ToString();
 
-                   int hour = dateServer.Hour;
-
-                    if(hour > 21)
-                    {
-                        json = JSONHelper.GetJSONString(String.Format(ConfigurationManager.AppSettings["loteria"], 2));
-                    }
-                    else
-                    {
-                        json = JSONHelper.GetJSONString(readerJsonByFile());
-                    }
-                   
                     
+
+                   
                    
                 }
                 catch (System.Net.WebException wex)
@@ -68,21 +63,26 @@ namespace Bolao
                     }
 
                 }
-
                 JavaScriptSerializer serializer = new JavaScriptSerializer();
 
-                Loteria loteria = serializer.Deserialize<Loteria>(json);
+                Loteria loteria = serializer.Deserialize<Loteria>(jsonParsed);
 
                 preencheDropdownlist(loteria.NumeroConcurso);
+
                 loadPage("L");
             }
         }
 
         public string readerJsonByFile()
         {
-            StreamReader oReader = new StreamReader(@"C:\ProjetoEdmilson\json.txt");
+            string fileName = "json.txt";
+            string path = Server.MapPath(Path.Combine("~", fileName));
+            string jsonFile = "";
 
-            String jsonFile = oReader.ReadLine();
+            using (StreamReader rJson = new StreamReader(path))
+            {
+                jsonFile = rJson.ReadToEnd();
+            }
 
             return jsonFile;
             
@@ -91,16 +91,14 @@ namespace Bolao
 
         public void preencheDropdownlist(int concursoAtual)
         {
-            List<String> concursos = new List<string>();
 
-            concursos.Add(""+concursoAtual);
+            DropDownList1.Items.Clear();
 
-            for (int i = 0; i <= 123; i++)
-            {
-                concursos.Add("" + concursoAtual--);
-            }
+            List<string> numberConcurso = new List<string>();
 
-            DropDownList1.DataSource = concursos;
+            numberConcurso.Add("" + concursoAtual);
+
+            DropDownList1.DataSource = numberConcurso;
             DropDownList1.DataBind();
 
         }
@@ -262,9 +260,13 @@ namespace Bolao
 
 
 
-        public string[] loadJogos()
+        public string[] loadJogos(string tipo)
         {
             string fileName = "jogosByConfig.txt";
+
+            if (tipo == "G")
+                fileName = "jogosFamiliaFernandes.txt";
+            
             string path = Server.MapPath(Path.Combine("~", fileName));
             StreamReader loadFile = new StreamReader(path);
             string[] jogosQuinaFile = new string[16];
@@ -280,12 +282,20 @@ namespace Bolao
             return jogosQuinaFile;
         }
 
-        public List<string[]> preencheNumero()
+        public List<string[]> preencheNumero(int numeroJogo)
         {
 
             string[] jogosQuinaCarregado;
 
-            jogosQuinaCarregado = loadJogos();
+            if (numeroJogo <= 4375)
+            {
+                jogosQuinaCarregado = loadJogos("G");
+            }
+            else
+            {
+                jogosQuinaCarregado = loadJogos("N");
+            }
+
 
             //string[] jogos01 = { "JG (01)", "15", "16", "44", "67", "78" };
             //string[] jogos02 = { "JG (02)", "22", "37", "49", "53", "76" };
@@ -310,18 +320,18 @@ namespace Bolao
             string[] jogos02 = jogosQuinaCarregado[1].ToString().Split(',');
             string[] jogos03 = jogosQuinaCarregado[2].ToString().Split(',');
             string[] jogos04 = jogosQuinaCarregado[3].ToString().Split(',');
-            string[] jogos05 = jogosQuinaCarregado[4].ToString().Split(',');
-            string[] jogos06 = jogosQuinaCarregado[5].ToString().Split(',');
-            string[] jogos07 = jogosQuinaCarregado[6].ToString().Split(',');
-            string[] jogos08 = jogosQuinaCarregado[7].ToString().Split(',');
-            string[] jogos09 = jogosQuinaCarregado[8].ToString().Split(',');
-            string[] jogos10 = jogosQuinaCarregado[9].ToString().Split(',');
-            string[] jogos11 = jogosQuinaCarregado[10].ToString().Split(',');
-            string[] jogos12 = jogosQuinaCarregado[11].ToString().Split(',');
-            string[] jogos13 = jogosQuinaCarregado[12].ToString().Split(',');
-            string[] jogos14 = jogosQuinaCarregado[13].ToString().Split(',');
-            string[] jogos15 = jogosQuinaCarregado[14].ToString().Split(',');
-            string[] jogos16 = jogosQuinaCarregado[15].ToString().Split(',');
+            //string[] jogos05 = jogosQuinaCarregado[4].ToString().Split(',');
+            //string[] jogos06 = jogosQuinaCarregado[5].ToString().Split(',');
+            //string[] jogos07 = jogosQuinaCarregado[6].ToString().Split(',');
+            //string[] jogos08 = jogosQuinaCarregado[7].ToString().Split(',');
+            //string[] jogos09 = jogosQuinaCarregado[8].ToString().Split(',');
+            //string[] jogos10 = jogosQuinaCarregado[9].ToString().Split(',');
+            //string[] jogos11 = jogosQuinaCarregado[10].ToString().Split(',');
+            //string[] jogos12 = jogosQuinaCarregado[11].ToString().Split(',');
+            //string[] jogos13 = jogosQuinaCarregado[12].ToString().Split(',');
+            //string[] jogos14 = jogosQuinaCarregado[13].ToString().Split(',');
+            //string[] jogos15 = jogosQuinaCarregado[14].ToString().Split(',');
+            //string[] jogos16 = jogosQuinaCarregado[15].ToString().Split(',');
 
 
 
@@ -497,18 +507,18 @@ namespace Bolao
             jogosQuina.Add(jogos02);
             jogosQuina.Add(jogos03);
             jogosQuina.Add(jogos04);
-            jogosQuina.Add(jogos05);
-            jogosQuina.Add(jogos06);
-            jogosQuina.Add(jogos07);
-            jogosQuina.Add(jogos08);
-            jogosQuina.Add(jogos09);
-            jogosQuina.Add(jogos10);
-            jogosQuina.Add(jogos11);
-            jogosQuina.Add(jogos12);
-            jogosQuina.Add(jogos13);
-            jogosQuina.Add(jogos14);
-            jogosQuina.Add(jogos15);
-            jogosQuina.Add(jogos16);
+            //jogosQuina.Add(jogos05);
+            //jogosQuina.Add(jogos06);
+            //jogosQuina.Add(jogos07);
+            //jogosQuina.Add(jogos08);
+            //jogosQuina.Add(jogos09);
+            //jogosQuina.Add(jogos10);
+            //jogosQuina.Add(jogos11);
+            //jogosQuina.Add(jogos12);
+            //jogosQuina.Add(jogos13);
+            //jogosQuina.Add(jogos14);
+            //jogosQuina.Add(jogos15);
+            //jogosQuina.Add(jogos16);
 
             // Extra
 
@@ -733,6 +743,7 @@ namespace Bolao
         protected void GridView2_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             int num7;
+            int jogadoresQtd = this.GridView2.Rows.Count;
             for (int i = 0; i < this.GridView2.Rows.Count; i = num7 + 1)
             {
                 double num2 = 0.0;
@@ -741,15 +752,15 @@ namespace Bolao
                 num3 = Convert.ToDouble(this.lblEstimativaValorProximoSorteio.Text);
                 if (!(num2 == 0.0))
                 {
-                    double num5 = num2 / 10.0;
+                    double num5 = num2 / jogadoresQtd;
                     this.GridView2.Rows[i].Cells[5].Text = "R$ " + string.Format("{0:N}", num5);
                 }
                 else if (!(num3 == 0.0))
                 {
-                    double num6 = Convert.ToDouble(this.lblEstimativaValorProximoSorteio.Text) / 10.0;
+                    double num6 = Convert.ToDouble(this.lblEstimativaValorProximoSorteio.Text) / jogadoresQtd;
                     this.GridView2.Rows[i].Cells[5].Text = "R$ " + string.Format("{0:N}", num6);
                 }
-                double num4 = Convert.ToDouble(this.lblQuadra.Text) / 10.0;
+                double num4 = Convert.ToDouble(this.lblQuadra.Text)/ jogadoresQtd;
                 Label label = (Label)this.GridView2.Rows[i].FindControl("Label4");
                 this.GridView2.Rows[i].Cells[4].Text = "R$ " + string.Format("{0:N}", num4);
                 if (label.Text == "SIM")
@@ -842,30 +853,22 @@ namespace Bolao
             string time = dateAgora.TimeOfDay.ToString();
             Session["ok"] = false;
             dvGanhadores.Visible = false;
-            numerosDaQuina = preencheNumero();
-            escreveJsonFile(json);
+           
+          
             try
             {
-              
-                DateTime dateServer = ;
+             
 
-                int hour = DateTime.Now.Hour;
-
-                if (hour > 21)
-                {
                     if (status == "D")
                     {
-                        json = JSONHelper.GetJSONString(String.Format(ConfigurationManager.AppSettings["loteria1"], 2, Convert.ToInt32(DropDownList1.SelectedItem.Text)));
+                        //Not yet implemented
+                        //json = JSONHelper.GetJSONString(String.Format(ConfigurationManager.AppSettings["loteria1"], 2, Convert.ToInt32(DropDownList1.SelectedItem.Text)));
                     }
                     else
                     {
-                        json = JSONHelper.GetJSONString(String.Format(ConfigurationManager.AppSettings["loteria"], 2));
+                        //json = JSONHelper.GetJSONString(String.Format(ConfigurationManager.AppSettings["loteria"], 2));
                     }
-                }
-                else
-                {
-                    json = JSONHelper.GetJSONString(readerJsonByFile());
-                }
+             
 
               
                 
@@ -883,7 +886,7 @@ namespace Bolao
 
             JavaScriptSerializer serializer = new JavaScriptSerializer();
 
-            Loteria loteria = serializer.Deserialize<Loteria>(json);
+            Loteria loteria = serializer.Deserialize<Loteria>(jsonParsed);
 
 
 
@@ -900,14 +903,14 @@ namespace Bolao
 
             }
             this.lblNumeroConcurso.Text = loteria.NumeroConcurso.ToString();
-            this.lblDataConcurso.Text = Convert.ToDateTime(loteria.Data, CultureInfo.InvariantCulture).ToString("dd/MM/yyyy");
+            this.lblDataConcurso.Text = Convert.ToDateTime(loteria.Data, CultureInfo.InvariantCulture).ToString("MM/dd/yyyy");
             this.lblSorteiRealizadoEm.Text = loteria.RealizadoEm;
             this.lblEstimativaValorProximoSorteio.Text = loteria.EstimativaPremio.ToString("#,0.00", new CultureInfo("pt-BR")).ToString();
-            this.lblDataProximoConcurso.Text = Convert.ToDateTime(loteria.DataProximo, CultureInfo.InvariantCulture).ToString("dd/MM/yyyy");
+            this.lblDataProximoConcurso.Text = Convert.ToDateTime(loteria.DataProximo).ToString("dd/MM/yyyy");
             this.lblAcumladoProximoConcurso.Text = loteria.ValorAcumulado.ToString("#,0.00", new CultureInfo("pt-BR")).ToString();
             this.isPersit = this.oBolao.validaInsert(Convert.ToInt32(this.lblNumeroConcurso.Text));
 
-
+            numerosDaQuina = preencheNumero(loteria.NumeroConcurso);
 
             foreach (var item1 in loteria.Sorteios)
             {
@@ -950,7 +953,7 @@ namespace Bolao
 
                     if (item3.Faixa == "Quadra")
                     {
-                        lblQuadra.Text = item3.Valor.ToString("#,0.00", new CultureInfo("pt-BR")).ToString(); ;
+                        lblQuadra.Text = item3.Valor.ToString("#,0.00", new CultureInfo("pt-BR")).ToString(); 
                         lblGanhadoresQuadra.Text = item3.NumeroGanhadores.ToString();
 
 

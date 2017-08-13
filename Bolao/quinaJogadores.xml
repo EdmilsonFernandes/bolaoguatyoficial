@@ -2,75 +2,12 @@
 <BolaoQuina>
   <Jogador>
     <Id>1</Id>
-    <Nome>Edmilson</Nome>
-    <MesReferencia>Maio</MesReferencia>
+    <Nome>Edmilson e Cristina</Nome>
+    <MesReferencia>Agosto</MesReferencia>
     <StatusPG>SIM</StatusPG>
     <SimuladorQuadra>0</SimuladorQuadra>
     <SimuladorQuina>0</SimuladorQuina>
   </Jogador>
-  <Jogador>
-    <Id>2</Id>
-    <Nome>Bruno Augusto</Nome>
-    <MesReferencia>Maio</MesReferencia>
-    <StatusPG>SIM</StatusPG>
-    <SimuladorQuadra>0</SimuladorQuadra>
-    <SimuladorQuina>0</SimuladorQuina>
-  </Jogador>
-  <Jogador>
-    <Id>3</Id>
-    <Nome>Dave</Nome>
-    <MesReferencia>Maio</MesReferencia>
-    <StatusPG>SIM</StatusPG>
-    <SimuladorQuadra>0</SimuladorQuadra>
-    <SimuladorQuina>0</SimuladorQuina>
-  </Jogador>
-  <Jogador>
-    <Id>4</Id>
-    <Nome>Felipe</Nome>
-    <MesReferencia>Maio</MesReferencia>
-    <StatusPG>SIM</StatusPG>
-    <SimuladorQuadra>0</SimuladorQuadra>
-    <SimuladorQuina>0</SimuladorQuina>
-  </Jogador>
-  <Jogador>
-    <Id>5</Id>
-    <Nome>Fernando</Nome>
-    <MesReferencia>Maio</MesReferencia>
-    <StatusPG>SIM</StatusPG>
-    <SimuladorQuadra>0</SimuladorQuadra>
-    <SimuladorQuina>0</SimuladorQuina>
-  </Jogador>
-  <Jogador>
-    <Id>6</Id>
-    <Nome>Zé Osses</Nome>
-    <MesReferencia>Maio</MesReferencia>
-    <StatusPG>SIM</StatusPG>
-    <SimuladorQuadra>0</SimuladorQuadra>
-    <SimuladorQuina>0</SimuladorQuina>
-  </Jogador>
-  <Jogador>
-    <Id>7</Id>
-    <Nome>Carlos</Nome>
-    <MesReferencia>Maio</MesReferencia>
-    <StatusPG>SIM</StatusPG>
-    <SimuladorQuadra>0</SimuladorQuadra>
-    <SimuladorQuina>0</SimuladorQuina>
-  </Jogador>
-  <Jogador>
-    <Id>8</Id>
-    <Nome>Mauricio</Nome>
-    <MesReferencia>Maio</MesReferencia>
-    <StatusPG>SIM</StatusPG>
-    <SimuladorQuadra>0</SimuladorQuadra>
-    <SimuladorQuina>0</SimuladorQuina>
-  </Jogador>
-  <Jogador>
-    <Id>9</Id>
-    <Nome>Harrison</Nome>
-    <MesReferencia>Maio</MesReferencia>
-    <StatusPG>SIM</StatusPG>
-    <SimuladorQuadra>0</SimuladorQuadra>
-    <SimuladorQuina>0</SimuladorQuina>
-  </Jogador>
-  <configuracaoQuina mesReference="Referência (Abril/2017)" inicioJogo="4376" fimJogo="4394" />
+ 
+  <configuracaoQuina mesReference="Referência (agosto/2017)" inicioJogo="4455" fimJogo="A definir" />
 </BolaoQuina>
